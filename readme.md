@@ -1,4 +1,4 @@
-# EncodedApi
+# Simple Post API using Clean Architecture
 
 ## Instructions
 
