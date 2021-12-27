@@ -2,7 +2,7 @@ import { PostGetterService, PostWriterService, PostDeleterService } from "../dom
 import { PostgresPostGetter, PostgresPostWriter, PostgresPostDeleter } from "../gateways/postgres";
 import { UCPostGetter, UCPostWriter, UCPostDeleter } from "../usecases";
 
-class containerBuilder {
+class ContainerBuilder {
 
     newPostGetterCtn(user: string, host: string, database: string, password: string, port: number): UCPostGetter {
 
@@ -25,4 +25,4 @@ class containerBuilder {
 
 }
 
-export default containerBuilder
+export default ContainerBuilder
