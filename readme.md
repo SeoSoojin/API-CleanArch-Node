@@ -33,7 +33,8 @@ nodemon index.ts
 ## Design Pattern
 
  - Clean Ach pattern
-    
+
+# Curls
 ## /
 
   - Description: Get all endpoints defined by the API
