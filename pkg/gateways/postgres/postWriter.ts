@@ -1,3 +1,4 @@
+import { errNotFound } from "../../domain/models/errors";
 import { Post } from "../../domain/models/post"
 
 class PostgresPostWriter {
@@ -25,6 +26,7 @@ class PostgresPostWriter {
             await client.query(sql, values)
             client.release()
             resolve(null)
+
             }).catch((err: Error) => {
 
                 reject(err)
@@ -44,9 +46,24 @@ class PostgresPostWriter {
 
                 const sql = 'UPDATE posts SET title = $1, description = $2, category = $3, author_id = $4 WHERE id = $5;';
                 const values = [post.title, post.description, post.category, post.author.id, id];
-                await client.query(sql, values)
+                client.query(sql, values).then((res: any) => {
+                    
+                    if (res.rowCount === 0) {
+                        
+                        reject(errNotFound)
+                        
+                    }else{
+                        
+                        resolve(null)
+                        
+                    }
+                }).catch((err: Error) => {
+                    
+                    reject(err)
+                    
+                });
                 client.release()
-                resolve(null)
+
             }).catch((err: Error) => {
 
                 reject(err)

@@ -1,4 +1,5 @@
 import { Post } from "../../domain/models/post";
+import { errNotFound } from "../../domain/models/errors";
 
 class PostgresPostGetter {
     
@@ -27,6 +28,11 @@ class PostgresPostGetter {
                     client.release()
                     const posts: Post[] = []
 
+                    if (res.rowCount === 0) {
+
+                        reject(errNotFound)
+                        
+                    }
                     res.rows.map((post: any) => {
 
                         const newPost: Post = {
@@ -70,8 +76,9 @@ class PostgresPostGetter {
                              JOIN authors as a ON p.author_id = a.id where p.id = $1;`;
                 client.query(sql, [id]).then((res: any) => {
 
-                    client.release()
-
+                    if (res.rowCount === 0) {
+                        reject(errNotFound)
+                    }
                     const post: Post = {
                         id: res.rows[0].id,
                         title: res.rows[0].title,
@@ -86,10 +93,10 @@ class PostgresPostGetter {
 
                 }).catch((err: Error) => {
 
-                    client.release()
                     reject(err)
 
                 })
+                client.release()
 
             }).catch((err: Error) => {
 

@@ -1,3 +1,4 @@
+import { errNotFound } from "../../domain/models/errors";
 import { Post } from "../../domain/models/post"
 
 class PostgresPostDeleter {
@@ -20,9 +21,24 @@ class PostgresPostDeleter {
             this.pool.connect().then(async (client: any) => {
 
                 const sql = 'DELETE from posts where id = $1;';
-                await client.query(sql, [id])
+                client.query(sql, [id]).then((res: any) => {
+
+                   if (res.rowCount === 0) {
+
+                        reject(errNotFound)
+
+                    }else{
+
+                        resolve(null)
+                    }
+                    
+                }).catch((err: Error) => {
+                    
+                    reject(err)
+
+                })
+
                 client.release()
-                resolve(null)
             }).catch((err: Error) => {
 
                 reject(err)
