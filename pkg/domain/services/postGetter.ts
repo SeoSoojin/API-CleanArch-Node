@@ -17,6 +17,7 @@ class PostGetterService  {
 
     }
 
+    // Checks if the id is valid
     getPostById(id: number): Promise<Post | Error> {
 
         if (id <= 0) {

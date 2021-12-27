@@ -1,3 +1,5 @@
+
+// Type definitions for model Author
 type Author = {
 
     id?: number,

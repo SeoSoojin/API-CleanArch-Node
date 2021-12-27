@@ -2,6 +2,7 @@ import { PostGetterService, PostWriterService, PostDeleterService } from "../dom
 import { PostgresPostGetter, PostgresPostWriter, PostgresPostDeleter } from "../gateways/postgres";
 import { UCPostGetter, UCPostWriter, UCPostDeleter } from "../usecases";
 
+// Class to build containers using the dependency injection pattern
 class ContainerBuilder {
 
     newPostGetterCtn(user: string, host: string, database: string, password: string, port: number): UCPostGetter {

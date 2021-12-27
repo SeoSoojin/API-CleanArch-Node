@@ -12,6 +12,7 @@ class PostWriterService  {
 
     }
 
+    // Checks if every required field is inputted
     insertPost(post: Post): Promise<null | Error> {
         
         if (!post.author) {
@@ -58,6 +59,8 @@ class PostWriterService  {
     
     }
 
+    // Checks if the id is valid
+    // Checks if every field is inputted
     updatePost(id: number, post: Post): Promise<null | Error> {
 
         if (id <= 0) {

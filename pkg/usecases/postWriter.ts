@@ -2,6 +2,7 @@ import { Post } from "../domain/models/post"
 import { PostWriterService } from "../domain/services/postWriter"
 import { PostWriter } from "./interfaces"
 
+// UC for writing on DB
 class UCPostWriter implements PostWriter { 
 
     private postWriterService: PostWriterService

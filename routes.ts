@@ -7,6 +7,8 @@ import ContainerBuilder from './pkg/registry/containers';
 const router: Router = Router();
 
 const ctnBuilder = new ContainerBuilder();
+
+// Containers initialization for each usecase
 const getterCtn = ctnBuilder.newPostGetterCtn(DbConfig.user, DbConfig.host, DbConfig.database, DbConfig.password, DbConfig.port);
 const writerCtn = ctnBuilder.newPostWriterCtn(DbConfig.user, DbConfig.host, DbConfig.database, DbConfig.password, DbConfig.port);
 const deleterCtn = ctnBuilder.newPostDeleterCtn(DbConfig.user, DbConfig.host, DbConfig.database, DbConfig.password, DbConfig.port);
@@ -27,6 +29,7 @@ type resMessage = {
 
 }
 
+// Routes definitions
 const routesHandler = {
     get: 
         [
@@ -210,6 +213,8 @@ const routesHandler = {
         ], 
 }
 
+
+// Function to register routes
 const initRoutes = (): void => {
 
     routesHandler.get.forEach(route => {
@@ -226,6 +231,8 @@ const initRoutes = (): void => {
 
 initRoutes();
 
+
+// Endpoint to get all routes
 router.get('/', (req: Request, res: Response) => {
 
     res.statusCode = 200;

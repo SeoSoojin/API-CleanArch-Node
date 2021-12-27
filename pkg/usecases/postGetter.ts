@@ -1,6 +1,7 @@
 import { PostGetterService } from "../domain/services/postGetter";
 import { PostGetter } from "./interfaces";
 
+// UC for getting a post or list of posts
 class UCPostGetter implements PostGetter { 
 
     private postGetterService: PostGetterService

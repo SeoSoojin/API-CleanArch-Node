@@ -1,5 +1,6 @@
 import { Author } from "./author"
 
+// Type definitions for model Post
 type Post = {
 
     id?: number,

@@ -12,6 +12,7 @@ class PostDeleterService  {
 
     }
 
+    // Checks if the id is valid
     deletePost(id: number): Promise<null | Error> {
 
         if (id <= 0) {

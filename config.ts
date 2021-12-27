@@ -1,3 +1,5 @@
+
+// DB credentials
 export const DbConfig = {
 
     user: process.env.POSTGRES_USER || 'postgres',
